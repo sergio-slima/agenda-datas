@@ -1,0 +1,132 @@
+object FrameNotificacao: TFrameNotificacao
+  Size.Width = 585.000000000000000000
+  Size.Height = 120.000000000000000000
+  Size.PlatformDefault = False
+  object Rectangle1: TRectangle
+    Align = Client
+    Margins.Left = 10.000000000000000000
+    Margins.Top = 10.000000000000000000
+    Margins.Right = 10.000000000000000000
+    Margins.Bottom = 10.000000000000000000
+    Size.Width = 565.000000000000000000
+    Size.Height = 100.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    XRadius = 10.000000000000000000
+    YRadius = 10.000000000000000000
+    object Layout1: TLayout
+      Align = Left
+      Margins.Left = 8.000000000000000000
+      Margins.Top = 8.000000000000000000
+      Margins.Right = 8.000000000000000000
+      Margins.Bottom = 8.000000000000000000
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 40.000000000000000000
+      Size.Height = 84.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object cloIcone: TCircle
+        Align = Top
+        Fill.Bitmap.WrapMode = TileStretch
+        Fill.Kind = Bitmap
+        Size.Width = 40.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+      end
+    end
+    object Layout2: TLayout
+      Align = Client
+      Margins.Top = 8.000000000000000000
+      Margins.Right = 8.000000000000000000
+      Margins.Bottom = 8.000000000000000000
+      Size.Width = 501.000000000000000000
+      Size.Height = 84.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object Layout3: TLayout
+        Align = Top
+        Size.Width = 501.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        object lblUsuario: TLabel
+          Align = Client
+          StyledSettings = [Family]
+          Size.Width = 429.000000000000000000
+          Size.Height = 25.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 14.000000000000000000
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = xFF4C4C4C
+          Text = 'Sergio Lima'
+          TabOrder = 1
+        end
+        object lblData: TLabel
+          Align = Right
+          StyledSettings = [Family]
+          Position.X = 429.000000000000000000
+          Size.Width = 72.000000000000000000
+          Size.Height = 25.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 14.000000000000000000
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = xFF8A8A8A
+          TextSettings.HorzAlign = Trailing
+          Text = '15/01'
+          TabOrder = 0
+        end
+      end
+      object Layout4: TLayout
+        Align = Bottom
+        Position.Y = 59.000000000000000000
+        Size.Width = 501.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object btnExcluir: TSpeedButton
+          Align = Right
+          StyledSettings = [Family]
+          Position.X = 421.000000000000000000
+          Size.Width = 80.000000000000000000
+          Size.Height = 25.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'Excluir'
+          TextSettings.Font.Size = 14.000000000000000000
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = xFFE53A3A
+          OnClick = btnExcluirClick
+        end
+        object btnAceitar: TSpeedButton
+          Align = Right
+          StyledSettings = [Family]
+          Margins.Right = 30.000000000000000000
+          Position.X = 311.000000000000000000
+          Size.Width = 80.000000000000000000
+          Size.Height = 25.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'Aceitar'
+          TextSettings.Font.Size = 14.000000000000000000
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = xFF04A62B
+          OnClick = btnAceitarClick
+        end
+      end
+      object lblTexto: TLabel
+        Align = Client
+        StyledSettings = [Family]
+        Size.Width = 501.000000000000000000
+        Size.Height = 34.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        TextSettings.FontColor = xFF8A8A8A
+        TextSettings.VertAlign = Leading
+        Text = 
+          'Sergio Lima est'#225' convidando voc'#234' para pregar na igreja de Laranj' +
+          'eiras sobre Mordomia Crist'#227
+        TabOrder = 0
+      end
+    end
+  end
+end

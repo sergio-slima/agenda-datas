@@ -1,0 +1,33 @@
+object FrameEventosTipos: TFrameEventosTipos
+  HitTest = False
+  Size.Width = 417.000000000000000000
+  Size.Height = 28.000000000000000000
+  Size.PlatformDefault = False
+  object lblDescricao: TLabel
+    Align = Client
+    StyledSettings = [Family]
+    Margins.Right = 10.000000000000000000
+    Size.Width = 356.000000000000000000
+    Size.Height = 28.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 16.000000000000000000
+    TextSettings.Font.StyleExt = {00060000000000000004000000}
+    TextSettings.FontColor = xFF6A6A6A
+    Text = 'Sergio Lima'
+    TabOrder = 2
+  end
+  object lblID: TLabel
+    Align = Left
+    StyledSettings = [Family]
+    Margins.Left = 10.000000000000000000
+    Position.X = 10.000000000000000000
+    Size.Width = 41.000000000000000000
+    Size.Height = 28.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 16.000000000000000000
+    TextSettings.Font.StyleExt = {00060000000000000004000000}
+    TextSettings.FontColor = xFF6A6A6A
+    Text = '00'
+    TabOrder = 1
+  end
+end
