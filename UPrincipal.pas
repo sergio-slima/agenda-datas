@@ -259,8 +259,8 @@ begin
   DM.QryEventos.SQL.Clear;
   DM.QryEventos.SQL.Add('SELECT DISTINCT DATA FROM EVENTOS');
   DM.QryEventos.SQL.Add('WHERE DATA >= :DATA1 AND DATA <= :DATA2');
-  DM.QryEventos.ParamByName('DATA1').Value := FormatDateTime('dd.mm.yyyy', EncodeDate(ano, mes, 1));
-  DM.QryEventos.ParamByName('DATA2').Value := FormatDateTime('dd.mm.yyyy', EndOfTheMonth(cal.SelectedDate));
+  DM.QryEventos.ParamByName('DATA1').Value := FormatDateTime('yyyy-mm-dd', EncodeDate(ano, mes, 1));
+  DM.QryEventos.ParamByName('DATA2').Value := FormatDateTime('yyyy-mm-dd', EndOfTheMonth(cal.SelectedDate));
   DM.QryEventos.Active := True;
 
   for x := 1 to DM.QryEventos.RecordCount do
@@ -286,7 +286,7 @@ begin
   DM.QryEventos.SQL.Clear;
   DM.QryEventos.SQL.Add('SELECT * FROM EVENTOS');
   DM.QryEventos.SQL.Add('WHERE DATA = :DATA');
-  DM.QryEventos.ParamByName('DATA').Value := FormatDateTime('dd/mm/yyyy', cal.SelectedDate);
+  DM.QryEventos.ParamByName('DATA').Value := FormatDateTime('yyyy-mm-dd', cal.SelectedDate);
   DM.QryEventos.Active := True;
 
   if DM.QryEventos.RecordCount = 0 then

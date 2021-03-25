@@ -154,7 +154,7 @@ begin
     DM.QryEventos.SQL.Clear;
     DM.QryEventos.SQL.Add('INSERT INTO EVENTOS (DATA, DESCRICAO, TIPO, FAVORITO)');
     DM.QryEventos.SQL.Add('VALUES(:DATA, :DESCRICAO, :TIPO, :FAVORITO)');
-    DM.QryEventos.ParamByName('DATA').Value := FormatDateTime('dd.mm.yyyy', EdtData.Date);
+    DM.QryEventos.ParamByName('DATA').Value := FormatDateTime('yyyy-mm-dd', EdtData.Date);
     DM.QryEventos.ParamByName('DESCRICAO').Value := edtDescricao.Text;
     DM.QryEventos.ParamByName('TIPO').Value := EdtTipo.ItemIndex;
     if ImgON.Visible = True then
