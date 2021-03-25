@@ -53,8 +53,6 @@ type
     lbxFiltros: TListBox;
     Layout6: TLayout;
     Rectangle6: TRectangle;
-    EdtTipo: TComboBox;
-    Label6: TLabel;
     TabConfig: TTabItem;
     ActConfig: TChangeTabAction;
     ImgConfig: TImage;
@@ -64,6 +62,7 @@ type
     Layout8: TLayout;
     Label2: TLabel;
     LbxFavoritos: TListBox;
+    EdtTipo: TComboBox;
     procedure FormShow(Sender: TObject);
     procedure DayClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -81,6 +80,7 @@ type
     procedure ImgFiltrosClick(Sender: TObject);
     procedure btnBuscaClick(Sender: TObject);
     procedure ImgConfigClick(Sender: TObject);
+    procedure EdtTipoChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -132,7 +132,7 @@ begin
   f.Align := TAlignLayout.Client;
 
   f.lblDescricao.Text := e.descricao;
-  f.lblData.Text := DateToStr(e.data);
+  f.lblData.Text := e.data;
 
   if e.tipo = IntToStr(0) then          //Outros
     f.ImgOutros.Visible := True
@@ -180,7 +180,7 @@ begin
   while not DM.QryEventos.Eof do
   begin
     e.id := DM.QryEventos.FieldByName('ID').AsInteger;
-    e.data := DM.QryEventos.FieldByName('DATA').Value;
+    e.data := FormatDateTime('dd/mm/yyyy',DM.QryEventos.FieldByName('DATA').AsDateTime);
     e.descricao := DM.QryEventos.FieldByName('DESCRICAO').AsString;
     e.tipo := DM.QryEventos.FieldByName('TIPO').AsString;
     e.favorito := DM.QryEventos.FieldByName('FAVORITO').AsString;
@@ -201,10 +201,29 @@ begin
   DM.QryEventos.SQL.Clear;
   DM.QryEventos.SQL.Add('SELECT * FROM EVENTOS');
 
+  if FormPrincipal.EdtTipo.ItemIndex <> 7 then
+  begin
+    DM.QryEventos.SQL.Add('WHERE TIPO = :TIPO');
+    case FormPrincipal.EdtTipo.ItemIndex of
+      0 : DM.QryEventos.ParamByName('TIPO').Value := 0;
+      1 : DM.QryEventos.ParamByName('TIPO').Value := 1;
+      2 : DM.QryEventos.ParamByName('TIPO').Value := 2;
+      3 : DM.QryEventos.ParamByName('TIPO').Value := 3;
+      4 : DM.QryEventos.ParamByName('TIPO').Value := 4;
+      5 : DM.QryEventos.ParamByName('TIPO').Value := 5;
+      6 : DM.QryEventos.ParamByName('TIPO').Value := 6;
+    end;
+
+  end;
+
   if FormPrincipal.edtBusca.Text <> '' then
   begin
-    DM.QryEventos.SQL.Add('WHERE DESCRICAO = :DESCRICAO');
-    DM.QryEventos.ParamByName('DESCRICAO').Value := FormPrincipal.edtBusca.Text;
+    if FormPrincipal.EdtTipo.ItemIndex <> 7 then
+      DM.QryEventos.SQL.Add('AND DESCRICAO = :DESCRICAO')
+    else
+      DM.QryEventos.SQL.Add('WHERE DESCRICAO = :DESCRICAO');
+
+    DM.QryEventos.ParamByName('DESCRICAO').Value := '%'+FormPrincipal.edtBusca.Text+'%';
   end;
 
   DM.QryEventos.Active := True;
@@ -212,7 +231,7 @@ begin
   while not DM.QryEventos.Eof do
   begin
     e.id := DM.QryEventos.FieldByName('ID').AsInteger;
-    e.data := DM.QryEventos.FieldByName('DATA').Value;
+    e.data := FormatDateTime('dd/mm/yyyy',DM.QryEventos.FieldByName('DATA').AsDateTime);
     e.descricao := DM.QryEventos.FieldByName('DESCRICAO').AsString;
     e.tipo := DM.QryEventos.FieldByName('TIPO').AsString;
     e.favorito := DM.QryEventos.FieldByName('FAVORITO').AsString;
@@ -285,7 +304,7 @@ begin
       with DM.QryEventos do
       begin
         e.id := FieldByName('ID').AsInteger;
-        e.data := FieldByName('DATA').AsDateTime;
+        e.data := FormatDateTime('dd/mm/yyyy',FieldByName('DATA').AsDateTime);
         e.descricao := FieldByName('DESCRICAO').AsString;
         e.tipo := FieldByName('TIPO').AsString;
         e.favorito := FieldByName('FAVORITO').AsString;
@@ -302,6 +321,11 @@ procedure TFormPrincipal.DayClick(Sender: TObject);
 begin
   // Carregar escalas do dia
   ListarEventos;
+end;
+
+procedure TFormPrincipal.EdtTipoChange(Sender: TObject);
+begin
+  ListarFiltros;
 end;
 
 procedure TFormPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);

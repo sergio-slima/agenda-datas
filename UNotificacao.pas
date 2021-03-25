@@ -72,44 +72,44 @@ var
   icone : TStream;
   bmp : TBitmap;
 begin
-  FormNotificacao.lbxNotificacao.Items.Clear;
-
-  DM.SqlNotificacoes.Active := False;
-  DM.SqlNotificacoes.SQL.Clear;
-  DM.SqlNotificacoes.SQL.Add('SELECT N.*, U.ICONE FROM NOTIFICACAO N');
-  DM.SqlNotificacoes.SQL.Add('INNER JOIN USUARIOS U ON (U.USUARIO = N.USUARIO_DE)');
-  DM.SqlNotificacoes.SQL.Add('WHERE N.USUARIO_PARA = :USUARIO');
-//  DM.SqlNotificacoes.ParamByName('USUARIO').Value := FormPrincipal.pusuario;
-  DM.SqlNotificacoes.Active := True;
-
-  while not DM.SqlNotificacoes.Eof do
-  begin
-    n.id := DM.SqlNotificacoes.FieldByName('ID').AsInteger;
-
-    if DM.SqlNotificacoes.FieldByName('ICONE').AsString <> '' then
-    begin
-      try
-        icone := DM.SqlNotificacoes.CreateBlobStream(DM.SqlNotificacoes.FieldByName('ICONE'), bmread);
-
-        bmp := TBitmap.Create;
-        bmp.LoadFromStream(icone);
-
-        n.icone := bmp;
-      finally
-        icone.DisposeOf;
-      end;
-    end;
-
-    n.usuario_id := DM.SqlNotificacoes.FieldByName('USUARIO_DE').AsString;
-    n.data := FormatDateTime('DD/MM', DM.SqlNotificacoes.FieldByName('DATA').AsDateTime);
-    n.texto := DM.SqlNotificacoes.FieldByName('TEXTO').AsString;
-    n.tipo := DM.SqlNotificacoes.FieldByName('TIPO').AsString;
-
-    CriarFrame(n);
-
-    bmp.DisposeOf;
-    DM.SqlNotificacoes.Next;
-  end;
+//  FormNotificacao.lbxNotificacao.Items.Clear;
+//
+//  DM.SqlNotificacoes.Active := False;
+//  DM.SqlNotificacoes.SQL.Clear;
+//  DM.SqlNotificacoes.SQL.Add('SELECT N.*, U.ICONE FROM NOTIFICACAO N');
+//  DM.SqlNotificacoes.SQL.Add('INNER JOIN USUARIOS U ON (U.USUARIO = N.USUARIO_DE)');
+//  DM.SqlNotificacoes.SQL.Add('WHERE N.USUARIO_PARA = :USUARIO');
+////  DM.SqlNotificacoes.ParamByName('USUARIO').Value := FormPrincipal.pusuario;
+//  DM.SqlNotificacoes.Active := True;
+//
+//  while not DM.SqlNotificacoes.Eof do
+//  begin
+//    n.id := DM.SqlNotificacoes.FieldByName('ID').AsInteger;
+//
+//    if DM.SqlNotificacoes.FieldByName('ICONE').AsString <> '' then
+//    begin
+//      try
+//        icone := DM.SqlNotificacoes.CreateBlobStream(DM.SqlNotificacoes.FieldByName('ICONE'), bmread);
+//
+//        bmp := TBitmap.Create;
+//        bmp.LoadFromStream(icone);
+//
+//        n.icone := bmp;
+//      finally
+//        icone.DisposeOf;
+//      end;
+//    end;
+//
+//    n.usuario_id := DM.SqlNotificacoes.FieldByName('USUARIO_DE').AsString;
+//    n.data := FormatDateTime('DD/MM', DM.SqlNotificacoes.FieldByName('DATA').AsDateTime);
+//    n.texto := DM.SqlNotificacoes.FieldByName('TEXTO').AsString;
+//    n.tipo := DM.SqlNotificacoes.FieldByName('TIPO').AsString;
+//
+//    CriarFrame(n);
+//
+//    bmp.DisposeOf;
+//    DM.SqlNotificacoes.Next;
+//  end;
 end;
 
 procedure TFormNotificacao.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -120,15 +120,15 @@ end;
 
 procedure TFormNotificacao.FormShow(Sender: TObject);
 begin
-  ListarNotificacao;
-
-  // Marcar notificaçoes como lidas
-  DM.SqlNotificacoes.Active := False;
-  DM.SqlNotificacoes.SQL.Clear;
-  DM.SqlNotificacoes.SQL.Add('UPDATE NOTIFICACAO SET STATUS = ''S''');
-  DM.SqlNotificacoes.SQL.Add('WHERE USUARIO_PARA = :USUARIO');
-//  DM.SqlNotificacoes.ParamByName('USUARIO').Value := FormPrincipal.pusuario;
-  DM.SqlNotificacoes.ExecSQL;
+//  ListarNotificacao;
+//
+//  // Marcar notificaçoes como lidas
+//  DM.SqlNotificacoes.Active := False;
+//  DM.SqlNotificacoes.SQL.Clear;
+//  DM.SqlNotificacoes.SQL.Add('UPDATE NOTIFICACAO SET STATUS = ''S''');
+//  DM.SqlNotificacoes.SQL.Add('WHERE USUARIO_PARA = :USUARIO');
+////  DM.SqlNotificacoes.ParamByName('USUARIO').Value := FormPrincipal.pusuario;
+//  DM.SqlNotificacoes.ExecSQL;
 end;
 
 procedure TFormNotificacao.imgVoltarClick(Sender: TObject);

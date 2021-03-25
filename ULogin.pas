@@ -92,70 +92,70 @@ var
   icone : TBitmap;
 begin
   // Verificar se usuario existe
-  DM.SqlUsuarios.Active := False;
-  DM.SqlUsuarios.SQL.Clear;
-  DM.SqlUsuarios.SQL.Add('SELECT * FROM USUARIOS');
-  DM.SqlUsuarios.SQL.Add('WHERE USUARIO = :USUARIO');
-  DM.SqlUsuarios.ParamByName('USUARIO').Value := edtUsuarioNovo.Text;
-  DM.SqlUsuarios.Active := True;
-
-  if DM.SqlUsuarios.RecordCount > 0 then
-  begin
-    ShowMessage('Usuário já cadastrado.');
-    Exit;
-  end;
-
-  // Icone selecionado
-  if imgPregador.Tag = 1 then icone := imgPregador.Bitmap;
-  if imgAnciao.Tag = 1 then icone := imgAnciao.Bitmap;
-  if imgPastor.Tag = 1 then icone := imgPastor.Bitmap;
-
-  // Cadastrar Usuario
-  try
-    DM.SqlUsuarios.Active := False;
-    DM.SqlUsuarios.SQL.Clear;
-    DM.SqlUsuarios.SQL.Add('INSERT INTO USUARIOS (USUARIO, ICONE)');
-    DM.SqlUsuarios.SQL.Add('VALUES (:USUARIO, :ICONE)');
-    DM.SqlUsuarios.ParamByName('USUARIO').Value := edtUsuarioNovo.Text;
-    DM.SqlUsuarios.ParamByName('ICONE').Assign(icone);
-    DM.SqlUsuarios.ExecSQL;
-  except
-    ShowMessage('Erro ao criar nova conta');
-    Exit;
-  end;
-
-  if not Assigned(FormPrincipal) then
-    Application.CreateForm(TFormPrincipal, FormPrincipal);
-
-  Application.MainForm := FormPrincipal;
-//  FormPrincipal.pusuario := edtUsuarioNovo.Text;
-  FormPrincipal.Show;
-  FormLogin.Close;
+//  DM.SqlUsuarios.Active := False;
+//  DM.SqlUsuarios.SQL.Clear;
+//  DM.SqlUsuarios.SQL.Add('SELECT * FROM USUARIOS');
+//  DM.SqlUsuarios.SQL.Add('WHERE USUARIO = :USUARIO');
+//  DM.SqlUsuarios.ParamByName('USUARIO').Value := edtUsuarioNovo.Text;
+//  DM.SqlUsuarios.Active := True;
+//
+//  if DM.SqlUsuarios.RecordCount > 0 then
+//  begin
+//    ShowMessage('Usuário já cadastrado.');
+//    Exit;
+//  end;
+//
+//  // Icone selecionado
+//  if imgPregador.Tag = 1 then icone := imgPregador.Bitmap;
+//  if imgAnciao.Tag = 1 then icone := imgAnciao.Bitmap;
+//  if imgPastor.Tag = 1 then icone := imgPastor.Bitmap;
+//
+//  // Cadastrar Usuario
+//  try
+//    DM.SqlUsuarios.Active := False;
+//    DM.SqlUsuarios.SQL.Clear;
+//    DM.SqlUsuarios.SQL.Add('INSERT INTO USUARIOS (USUARIO, ICONE)');
+//    DM.SqlUsuarios.SQL.Add('VALUES (:USUARIO, :ICONE)');
+//    DM.SqlUsuarios.ParamByName('USUARIO').Value := edtUsuarioNovo.Text;
+//    DM.SqlUsuarios.ParamByName('ICONE').Assign(icone);
+//    DM.SqlUsuarios.ExecSQL;
+//  except
+//    ShowMessage('Erro ao criar nova conta');
+//    Exit;
+//  end;
+//
+//  if not Assigned(FormPrincipal) then
+//    Application.CreateForm(TFormPrincipal, FormPrincipal);
+//
+//  Application.MainForm := FormPrincipal;
+////  FormPrincipal.pusuario := edtUsuarioNovo.Text;
+//  FormPrincipal.Show;
+//  FormLogin.Close;
 end;
 
 procedure TFormLogin.btnLoginClick(Sender: TObject);
 begin
   // Verificar se usuario existe
-  DM.SqlUsuarios.Active := False;
-  DM.SqlUsuarios.SQL.Clear;
-  DM.SqlUsuarios.SQL.Add('SELECT * FROM USUARIOS');
-  DM.SqlUsuarios.SQL.Add('WHERE USUARIO = :USUARIO');
-  DM.SqlUsuarios.ParamByName('USUARIO').Value := edtUsuario.Text;
-  DM.SqlUsuarios.Active := True;
-
-  if DM.SqlUsuarios.RecordCount = 0 then
-  begin
-    ShowMessage('Usuário não encontrado.');
-    Exit;
-  end;
-
-  if not Assigned(FormPrincipal) then
-    Application.CreateForm(TFormPrincipal, FormPrincipal);
-
-  Application.MainForm := FormPrincipal;
-  //FormPrincipal.pusuario := edtUsuario.Text;
-  FormPrincipal.Show;
-  FormLogin.Close;
+//  DM.SqlUsuarios.Active := False;
+//  DM.SqlUsuarios.SQL.Clear;
+//  DM.SqlUsuarios.SQL.Add('SELECT * FROM USUARIOS');
+//  DM.SqlUsuarios.SQL.Add('WHERE USUARIO = :USUARIO');
+//  DM.SqlUsuarios.ParamByName('USUARIO').Value := edtUsuario.Text;
+//  DM.SqlUsuarios.Active := True;
+//
+//  if DM.SqlUsuarios.RecordCount = 0 then
+//  begin
+//    ShowMessage('Usuário não encontrado.');
+//    Exit;
+//  end;
+//
+//  if not Assigned(FormPrincipal) then
+//    Application.CreateForm(TFormPrincipal, FormPrincipal);
+//
+//  Application.MainForm := FormPrincipal;
+//  //FormPrincipal.pusuario := edtUsuario.Text;
+//  FormPrincipal.Show;
+//  FormLogin.Close;
 end;
 
 procedure TFormLogin.FormCreate(Sender: TObject);

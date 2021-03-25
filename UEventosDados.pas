@@ -6,12 +6,12 @@ uses FMX.Graphics;
 
 type
   TEventos = record
-    id : integer;
-    data : TDate;
-    hora : string;
-    descricao : string;
-    favorito : string; // S ou N
-    tipo : string;
+    id : Integer;
+    data : String; //TDate;
+    hora : String;
+    descricao : String;
+    favorito : String; // S ou N
+    tipo : String;
   end;
 
 implementation
