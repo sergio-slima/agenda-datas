@@ -63,6 +63,13 @@ type
     Label2: TLabel;
     LbxFavoritos: TListBox;
     EdtTipo: TComboBox;
+    StyleBook1: TStyleBook;
+    lytSemRegistros: TLayout;
+    Label3: TLabel;
+    Image1: TImage;
+    lytSemFavoritos: TLayout;
+    Label4: TLabel;
+    Image2: TImage;
     procedure FormShow(Sender: TObject);
     procedure DayClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -177,17 +184,23 @@ begin
 
   DM.QryEventos.Active := True;
 
-  while not DM.QryEventos.Eof do
+  if DM.QryEventos.RecordCount = 0 then
+    FormPrincipal.lytSemFavoritos.Visible:= True
+  else
   begin
-    e.id := DM.QryEventos.FieldByName('ID').AsInteger;
-    e.data := FormatDateTime('dd/mm/yyyy',DM.QryEventos.FieldByName('DATA').AsDateTime);
-    e.descricao := DM.QryEventos.FieldByName('DESCRICAO').AsString;
-    e.tipo := DM.QryEventos.FieldByName('TIPO').AsString;
-    e.favorito := DM.QryEventos.FieldByName('FAVORITO').AsString;
+    FormPrincipal.lytSemFavoritos.Visible:= False;
+    while not DM.QryEventos.Eof do
+    begin
+      e.id := DM.QryEventos.FieldByName('ID').AsInteger;
+      e.data := FormatDateTime('dd/mm/yyyy',DM.QryEventos.FieldByName('DATA').AsDateTime);
+      e.descricao := DM.QryEventos.FieldByName('DESCRICAO').AsString;
+      e.tipo := DM.QryEventos.FieldByName('TIPO').AsString;
+      e.favorito := DM.QryEventos.FieldByName('FAVORITO').AsString;
 
-    CriarFrame(e);
+      CriarFrame(e);
 
-    DM.QryEventos.Next;
+      DM.QryEventos.Next;
+    end;
   end;
 end;
 
@@ -219,26 +232,32 @@ begin
   if FormPrincipal.edtBusca.Text <> '' then
   begin
     if FormPrincipal.EdtTipo.ItemIndex <> 7 then
-      DM.QryEventos.SQL.Add('AND DESCRICAO = :DESCRICAO')
+      DM.QryEventos.SQL.Add('AND DESCRICAO LIKE :DESCRICAO')
     else
-      DM.QryEventos.SQL.Add('WHERE DESCRICAO = :DESCRICAO');
+      DM.QryEventos.SQL.Add('WHERE DESCRICAO LIKE :DESCRICAO');
 
     DM.QryEventos.ParamByName('DESCRICAO').Value := '%'+FormPrincipal.edtBusca.Text+'%';
   end;
 
   DM.QryEventos.Active := True;
 
-  while not DM.QryEventos.Eof do
+  if DM.QryEventos.RecordCount = 0 then
+    FormPrincipal.lytSemRegistros.Visible:= True
+  else
   begin
-    e.id := DM.QryEventos.FieldByName('ID').AsInteger;
-    e.data := FormatDateTime('dd/mm/yyyy',DM.QryEventos.FieldByName('DATA').AsDateTime);
-    e.descricao := DM.QryEventos.FieldByName('DESCRICAO').AsString;
-    e.tipo := DM.QryEventos.FieldByName('TIPO').AsString;
-    e.favorito := DM.QryEventos.FieldByName('FAVORITO').AsString;
+    FormPrincipal.lytSemRegistros.Visible:= False;
+    while not DM.QryEventos.Eof do
+    begin
+      e.id := DM.QryEventos.FieldByName('ID').AsInteger;
+      e.data := FormatDateTime('dd/mm/yyyy',DM.QryEventos.FieldByName('DATA').AsDateTime);
+      e.descricao := DM.QryEventos.FieldByName('DESCRICAO').AsString;
+      e.tipo := DM.QryEventos.FieldByName('TIPO').AsString;
+      e.favorito := DM.QryEventos.FieldByName('FAVORITO').AsString;
 
-    CriarFrame(e);
+      CriarFrame(e);
 
-    DM.QryEventos.Next;
+      DM.QryEventos.Next;
+    end;
   end;
 end;
 
@@ -366,12 +385,14 @@ end;
 
 procedure TFormPrincipal.ImgConfigClick(Sender: TObject);
 begin
+  Tela:= '';
   SelecionaIcone(Sender);
   ActConfig.Execute;
 end;
 
 procedure TFormPrincipal.ImgDatasClick(Sender: TObject);
 begin
+  Tela:= '';
   SelecionaIcone(Sender);
   ActDatas.Execute;
 end;
@@ -379,6 +400,7 @@ end;
 procedure TFormPrincipal.ImgFavoritosClick(Sender: TObject);
 begin
   Tela := 'Favoritos';
+  lytSemFavoritos.Visible:= False;
   ListarFavoritos;
   SelecionaIcone(Sender);
   ActFavoritos.Execute;
@@ -387,6 +409,7 @@ end;
 procedure TFormPrincipal.ImgFiltrosClick(Sender: TObject);
 begin
   Tela := 'Filtros';
+  lytSemRegistros.Visible:= False;
   ListarFiltros;
   SelecionaIcone(Sender);
   ActFiltros.Execute;
