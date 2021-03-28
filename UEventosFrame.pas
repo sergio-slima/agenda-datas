@@ -25,6 +25,7 @@ type
     ImgTrabalho: TImage;
     ImgViagens: TImage;
     Layout4: TLayout;
+    ImgFamilia: TImage;
   private
     { Private declarations }
   public

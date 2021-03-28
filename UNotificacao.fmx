@@ -1,9 +1,9 @@
 object FormNotificacao: TFormNotificacao
   Left = 0
   Top = 0
-  Caption = 'Form1'
-  ClientHeight = 480
-  ClientWidth = 291
+  Caption = 'Notifica'#231#245'es'
+  ClientHeight = 505
+  ClientWidth = 348
   Fill.Kind = Solid
   FormFactor.Width = 320
   FormFactor.Height = 480
@@ -11,77 +11,84 @@ object FormNotificacao: TFormNotificacao
   OnClose = FormClose
   OnShow = FormShow
   DesignerMasterStyle = 3
-  object Layout1: TLayout
-    Align = Top
-    Size.Width = 291.000000000000000000
-    Size.Height = 50.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 0
-    object Label5: TLabel
-      Align = Contents
-      StyledSettings = [Family]
-      Size.Width = 291.000000000000000000
-      Size.Height = 50.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Font.Size = 20.000000000000000000
-      TextSettings.Font.StyleExt = {00060000000000000004000000}
-      TextSettings.FontColor = xFF8A8A8A
-      TextSettings.HorzAlign = Center
-      Text = 'Notifica'#231#245'es'
-      TabOrder = 0
-    end
-    object imgVoltar: TImage
-      MultiResBitmap.Height = 144
-      MultiResBitmap.Width = 144
-      MultiResBitmap = <
-        item
-          Width = 144
-          Height = 144
-          PNG = {
-            89504E470D0A1A0A0000000D4948445200000090000000900806000000E746E2
-            B8000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
-            019149444154785EEDDD4D4AC4501085D1C66528D82EC3A14B771B2AFEAD4341
-            EB695E83DA2149551C68CE814B3A83CC3E5E464D760000000000000000000000
-            0000000000000000FC928B61B0580BE769988858A4C7F3364C44CCF63D1E1131
-            DB583C7D2262D4543C7D22E287B9F1F4898883A5F1F48988743C7DEDD97DECDF
-            3819AE4C6BF15CC72A01BCC45E3F7FB225D593A7ED2E76166363C4439A784813
-            0F69E2216D8D786E63E2D920F190261ED2C4439A7848130F69E2216DAD784E63
-            6C8C7848130F69E2214D3CA4898734F190B6463C3731F16C907848130F69E221
-            4D3CA4898734F150D2FE6E7C2C8A25BB8CB1516B9C40F7B1F3181B2522CA4444
-            99882813116522A24C449489883211512622CA444499882813116522A24C4494
-            89883211512622CA444499882813116522A24C449489883211512622CA447484
-            CF7ECFD7E2B98A3D7FDC4152F624F20AE36069440F31F1F0C5DC88C4C3A8A988
-            C4C3A4B1885A3CFB184CFA1ED1634C3C2CD223120F692D22F100000000000000
-            00000000000000000000000000C0DFB1DBBD03761B16544555E2CC0000000049
-            454E44AE426082}
-          FileName = 
-            'D:\Users\Desenvolvimento\Documents\Embarcadero\Studio\Projects\P' +
-            'regadores\images\ic_keyboard_arrow_left_black_48dp.png'
-        end>
-      Align = Left
-      Opacity = 0.699999988079071000
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 5.000000000000000000
-      Margins.Bottom = 5.000000000000000000
-      Position.X = 5.000000000000000000
-      Position.Y = 5.000000000000000000
-      Size.Width = 52.000000000000000000
-      Size.Height = 40.000000000000000000
-      Size.PlatformDefault = False
-      OnClick = imgVoltarClick
-    end
-  end
   object lbxNotificacao: TListBox
     Align = Client
-    Size.Width = 291.000000000000000000
-    Size.Height = 430.000000000000000000
+    Size.Width = 348.000000000000000000
+    Size.Height = 455.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 1
+    TabOrder = 0
     DisableFocusEffect = True
     DefaultItemStyles.ItemStyle = ''
     DefaultItemStyles.GroupHeaderStyle = ''
     DefaultItemStyles.GroupFooterStyle = ''
-    Viewport.Width = 291.000000000000000000
-    Viewport.Height = 430.000000000000000000
+    Viewport.Width = 348.000000000000000000
+    Viewport.Height = 455.000000000000000000
+  end
+  object Rectangle2: TRectangle
+    Align = Top
+    Fill.Color = xFF393939
+    Size.Width = 348.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    object Layout2: TLayout
+      Align = Top
+      Size.Width = 348.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object lblTitulo: TLabel
+        Align = Contents
+        StyledSettings = [Family]
+        Size.Width = 348.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 20.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        TextSettings.FontColor = claWhite
+        TextSettings.HorzAlign = Center
+        Text = 'Notifica'#231#245'es'
+        TabOrder = 0
+      end
+      object imgVoltar: TImage
+        MultiResBitmap.Height = 144
+        MultiResBitmap.Width = 144
+        MultiResBitmap = <
+          item
+            Width = 144
+            Height = 144
+            PNG = {
+              89504E470D0A1A0A0000000D4948445200000090000000900806000000E746E2
+              B8000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              019C49444154785EEDD6CD6DC24010805194321229495528DDA495B481EFB492
+              23D0002610EF4620018619E780F63DC91AFF694E9F2CCF000000000000000000
+              00000000000000000000F827EFE580FB2C168B8F5D71382FB761DC713C9588B8
+              C9B9782A1171D5B5782A1171D62DF15422E2C43DF15422E257249E4A448DCBC4
+              53755D372FEB68C914F16C369B7EBFEA65D84833C443987808130F61E2214C3C
+              844D11CF7ABD164F8BC443987808130F61E2214C3C848987B009E3791E36D20C
+              F110261EC2C443987808130F61E2216C8A7856AB95785A241EC2C44398780813
+              0F61E221E3BD3410269EB8A7321FD9579961CBE5F2733FBE872B5A93FE026DB7
+              DBDD7ECFEBB08EE64CF10F24A2C689883411912622D244449A88481311692222
+              4D44A489883411912622D244449A884813116922224D44A489883411912622D2
+              44449A884813116922224D44A48988B46C4402221C9178F8736F447DDF8B8753
+              B746241E2E1A8B483C8CBA145189E76D780BAE381751D775F3F218C61D47241E
+              420E11890700000000000000000000000000000000000000001ECA6CF6036DC5
+              56F41E09040E0000000049454E44AE426082}
+            FileName = 
+              'D:\Users\Desenvolvimento\Documents\Embarcadero\Studio\Projects\A' +
+              'genDatas\images\ic_keyboard_arrow_left_black_48dp.png'
+          end>
+        Align = Left
+        Margins.Left = 5.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Position.X = 5.000000000000000000
+        Position.Y = 5.000000000000000000
+        Size.Width = 52.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        OnClick = imgVoltarClick
+      end
+    end
   end
 end

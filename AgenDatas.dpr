@@ -14,14 +14,15 @@ uses
   UEventosTiposDados in 'UEventosTiposDados.pas',
   UEventosTiposFrame in 'UEventosTiposFrame.pas' {FrameEventosTipos: TFrame},
   UDM in 'UDM.pas' {DM: TDataModule},
-  UEventosFrame in 'UEventosFrame.pas' {FrameEventos: TFrame};
+  UEventosFrame in 'UEventosFrame.pas' {FrameEventos: TFrame},
+  UInicial in 'UInicial.pas' {FormInicial};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.FormFactor.Orientations := [TFormOrientation.Portrait];
-  Application.CreateForm(TFormPrincipal, FormPrincipal);
   Application.CreateForm(TDM, DM);
+  Application.CreateForm(TFormInicial, FormInicial);
   Application.Run;
 end.

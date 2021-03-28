@@ -49,6 +49,10 @@ type
     Rectangle6: TRectangle;
     ImgSalvar: TImage;
     Rectangle7: TRectangle;
+    Layout6: TLayout;
+    Rectangle8: TRectangle;
+    Edit1: TEdit;
+    Label2: TLabel;
     procedure imgFecharClick(Sender: TObject);
     procedure imgAddClick(Sender: TObject);
     procedure imgVoltarClick(Sender: TObject);

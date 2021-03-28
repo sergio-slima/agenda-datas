@@ -10,10 +10,11 @@ uses
 
 type
   TFormNotificacao = class(TForm)
-    Layout1: TLayout;
-    Label5: TLabel;
-    imgVoltar: TImage;
     lbxNotificacao: TListBox;
+    Rectangle2: TRectangle;
+    Layout2: TLayout;
+    lblTitulo: TLabel;
+    imgVoltar: TImage;
     procedure imgVoltarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
