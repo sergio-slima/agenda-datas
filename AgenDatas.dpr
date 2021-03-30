@@ -15,7 +15,9 @@ uses
   UEventosTiposFrame in 'UEventosTiposFrame.pas' {FrameEventosTipos: TFrame},
   UDM in 'UDM.pas' {DM: TDataModule},
   UEventosFrame in 'UEventosFrame.pas' {FrameEventos: TFrame},
-  UInicial in 'UInicial.pas' {FormInicial};
+  UInicial in 'UInicial.pas' {FormInicial},
+  uFancyDialog in 'uFancyDialog.pas',
+  uFormat in 'uFormat.pas';
 
 {$R *.res}
 

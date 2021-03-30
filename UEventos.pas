@@ -8,7 +8,7 @@ uses
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.Layouts, FMX.Edit,
   FMX.DateTimeCtrls, FMX.ListBox, FMX.TabControl, System.Actions, FMX.ActnList,
   Data.DB, FMX.ListView.Types, FMX.ListView.Appearances,
-  FMX.ListView.Adapters.Base, FMX.ListView;
+  FMX.ListView.Adapters.Base, FMX.ListView, uFancyDialog;
 
 type
   TFormEventos = class(TForm)
@@ -51,7 +51,7 @@ type
     Rectangle7: TRectangle;
     Layout6: TLayout;
     Rectangle8: TRectangle;
-    Edit1: TEdit;
+    EdtHora: TEdit;
     Label2: TLabel;
     procedure imgFecharClick(Sender: TObject);
     procedure imgAddClick(Sender: TObject);
@@ -64,8 +64,10 @@ type
     procedure ImgSalvarClick(Sender: TObject);
     procedure ImgONClick(Sender: TObject);
     procedure ImgOFFClick(Sender: TObject);
+    procedure EdtHoraTyping(Sender: TObject);
   private
     { Private declarations }
+    fancy : TFancyDialog;
     procedure AtualizarTipos();
   public
     { Public declarations }
@@ -80,7 +82,8 @@ implementation
 
 {$R *.fmx}
 
-uses UEventosTiposDados, UEventosTiposFrame, UDM, UPrincipal;
+uses UEventosTiposDados, UEventosTiposFrame, UDM, UPrincipal,
+  uFormat;
 
 procedure TFormEventos.AtualizarTipos();
 begin
@@ -149,15 +152,15 @@ procedure TFormEventos.btnSalvarClick(Sender: TObject);
 begin
   if (EdtData.IsEmpty) or (edtDescricao.Text = '') then
   begin
-    ShowMessage('Digite a Data e Descrição.');
+    fancy.Show(TIconDialog.Warning, 'Atenção', 'Digite a data, hora e descrição!', 'OK');
     Exit;
   end;
 
   try
     DM.QryEventos.Active := False;
     DM.QryEventos.SQL.Clear;
-    DM.QryEventos.SQL.Add('INSERT INTO EVENTOS (DATA, DESCRICAO, TIPO, FAVORITO)');
-    DM.QryEventos.SQL.Add('VALUES(:DATA, :DESCRICAO, :TIPO, :FAVORITO)');
+    DM.QryEventos.SQL.Add('INSERT INTO EVENTOS (DATA, DESCRICAO, TIPO, FAVORITO, HORA)');
+    DM.QryEventos.SQL.Add('VALUES(:DATA, :DESCRICAO, :TIPO, :FAVORITO, :HORA)');
     DM.QryEventos.ParamByName('DATA').Value := FormatDateTime('yyyy-mm-dd', EdtData.Date);
     DM.QryEventos.ParamByName('DESCRICAO').Value := edtDescricao.Text;
     DM.QryEventos.ParamByName('TIPO').Value := EdtTipo.ItemIndex;
@@ -165,6 +168,7 @@ begin
       DM.QryEventos.ParamByName('FAVORITO').Value := 'S'
     else
       DM.QryEventos.ParamByName('FAVORITO').Value := 'N';
+    DM.QryEventos.ParamByName('HORA').Value := edtHora.Text;
 
     DM.QryEventos.ExecSQL;
 
@@ -172,21 +176,28 @@ begin
     FormPrincipal.ListarEventos;
     FormPrincipal.CarregaDadosCalendario;
 
-    ShowMessage('Evento Cadastrado com Sucesso!');
+    fancy.Show(TIconDialog.Success, 'Concluído', 'Evento Cadastrado com Sucesso!', 'OK');
     Close;
   except
-    ShowMessage('Erro ao Cadastrar Evento!');
+    fancy.Show(TIconDialog.Error, 'Erro', 'Erro ao cadastrar evento!', 'OK');
   end;
+end;
+
+procedure TFormEventos.EdtHoraTyping(Sender: TObject);
+begin
+  Formatar(EdtHora, TFormato.Personalizado, '##:##');
 end;
 
 procedure TFormEventos.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
+  fancy.DisposeOf;
   Action := TCloseAction.caFree;
   FormEventos := nil;
 end;
 
 procedure TFormEventos.FormCreate(Sender: TObject);
 begin
+  fancy := TFancyDialog.Create(FormEventos);
   //AtualizarTipos();
     // limpar campos
   EdtData.Date := now;
@@ -228,7 +239,7 @@ procedure TFormEventos.ImgSalvarClick(Sender: TObject);
 begin
   if edtBusca.Text = '' then
   begin
-    ShowMessage('Digite uma descrição');
+    fancy.Show(TIconDialog.Warning, 'Atenção', 'Digite uma descrição!', 'OK');
     Exit;
   end;
 
@@ -240,7 +251,7 @@ begin
   DM.QryTipos.Active := True;
   if DM.QryTipos.RecordCount > 0 then
   begin
-    ShowMessage('Tipo de evento já cadastrado.');
+    fancy.Show(TIconDialog.Info, 'Ops!', 'Tipo de evento já cadastrado!', 'OK');
     exit;
   end;
 

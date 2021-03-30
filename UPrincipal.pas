@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.Layouts, FMX.Objects, FMX.ListBox,
   uCustomCalendar, DateUtils, UEventosDados, FMX.TabControl, System.Actions,
-  FMX.ActnList, FMX.Edit, Data.DB;
+  FMX.ActnList, FMX.Edit, Data.DB, uFancyDialog;
 
 type
   TFormPrincipal = class(TForm)
@@ -90,6 +90,7 @@ type
     procedure EdtTipoChange(Sender: TObject);
   private
     { Private declarations }
+    fancy : TFancyDialog;
   public
     { Public declarations }
     cal : TCustomCalendar;
@@ -349,11 +350,13 @@ end;
 
 procedure TFormPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
+  fancy.DisposeOf;
   cal.DisposeOf;
 end;
 
 procedure TFormPrincipal.FormCreate(Sender: TObject);
 begin
+  fancy := TFancyDialog.Create(FormEventos);
   TabControl.TabPosition := TTabPosition.None;
   TabControl.ActiveTab := TabDatas;
 end;

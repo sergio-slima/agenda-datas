@@ -34,6 +34,7 @@ type
     ActTab1: TChangeTabAction;
     ActTab2: TChangeTabAction;
     ActTab3: TChangeTabAction;
+    Label5: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure NavegacaoAba(cont: integer);
     procedure BtnVoltarClick(Sender: TObject);
